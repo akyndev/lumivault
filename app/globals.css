@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbfbfc;
+  --foreground: #09090b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 4px;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.18);
+  color: #09090b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.mono-label {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.35px rgba(24, 24, 27, 0.82);
+  text-shadow: 0 0 34px rgba(124, 58, 237, 0.11);
+}
+
+.liquid-field {
+  background:
+    linear-gradient(115deg, rgba(124, 58, 237, 0.08), transparent 34%),
+    linear-gradient(245deg, rgba(59, 130, 246, 0.07), transparent 38%),
+    radial-gradient(ellipse at 50% -10%, rgba(255, 255, 255, 0.95), transparent 48%),
+    #fbfbfc;
+}
+
+.liquid-field::before {
+  animation: liquidShift 18s ease-in-out infinite alternate;
+  background:
+    repeating-linear-gradient(
+      105deg,
+      rgba(24, 24, 27, 0.035) 0,
+      rgba(24, 24, 27, 0.035) 1px,
+      transparent 1px,
+      transparent 34px
+    ),
+    linear-gradient(130deg, transparent, rgba(139, 92, 246, 0.11), transparent);
+  content: "";
+  inset: -20%;
+  opacity: 0.6;
+  pointer-events: none;
+  position: absolute;
+  transform: rotate(-6deg);
+}
+
+.glass-panel {
+  backdrop-filter: blur(22px);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(244, 244, 245, 0.62)),
+    rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(24, 24, 27, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 24px 80px rgba(24, 24, 27, 0.09);
+}
+
+.command-cell {
+  animation: commandReveal 900ms ease both;
+}
+
+.command-cell:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.command-cell:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+.scanline {
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.36), transparent);
+  height: 1px;
+  left: 0;
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  top: 42%;
+}
+
+.vault-stage {
+  align-items: center;
+  display: flex;
+  inset: 90px 320px 80px 26%;
+  justify-content: center;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.vault-aura {
+  background:
+    radial-gradient(ellipse, rgba(167, 139, 250, 0.3), transparent 62%),
+    radial-gradient(ellipse, rgba(96, 165, 250, 0.18), transparent 70%);
+  filter: blur(18px);
+  height: min(56vw, 720px);
+  max-height: 78vh;
+  max-width: 78vh;
+  position: absolute;
+  transform: rotate(-12deg);
+  width: min(56vw, 720px);
+}
+
+.vault-monolith {
+  animation: vaultFloat 7s ease-in-out infinite;
+  aspect-ratio: 0.74;
+  filter: drop-shadow(0 42px 70px rgba(39, 39, 42, 0.24));
+  max-height: 72vh;
+  position: relative;
+  width: min(24vw, 340px);
+}
+
+.vault-monolith::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+  content: "";
+  height: 140%;
+  left: 54%;
+  opacity: 0.34;
+  position: absolute;
+  top: -20%;
+  transform: rotate(13deg);
+  width: 1px;
+}
+
+.vault-face {
+  position: absolute;
+}
+
+.vault-face-top {
+  background: linear-gradient(145deg, #ffffff, #c7cad3 58%, #747887);
+  clip-path: polygon(50% 0, 100% 21%, 50% 41%, 0 21%);
+  inset: 0 0 auto;
+  height: 42%;
+}
+
+.vault-face-left {
+  background: linear-gradient(155deg, #d9dbe2, #878b98 42%, #f7f8fb);
+  clip-path: polygon(0 21%, 50% 41%, 50% 100%, 0 76%);
+  inset: 0 0 0 0;
+}
+
+.vault-face-right {
+  background: linear-gradient(210deg, #ffffff, #b2b6c1 35%, #626774 82%);
+  clip-path: polygon(100% 21%, 50% 41%, 50% 100%, 100% 76%);
+  inset: 0;
+}
+
+.vault-core {
+  align-items: center;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.18), rgba(255, 255, 255, 0.62) 62%);
+  border: 1px solid rgba(24, 24, 27, 0.12);
+  display: flex;
+  height: 30%;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  width: 42%;
+}
+
+.vault-ring {
+  border: 1px solid rgba(24, 24, 27, 0.56);
+  border-radius: 999px;
+  height: 58%;
+  position: absolute;
+  width: 58%;
+}
+
+.vault-slot {
+  background: rgba(24, 24, 27, 0.76);
+  height: 2px;
+  position: absolute;
+  width: 52%;
+}
+
+@keyframes commandReveal {
+  from {
+    opacity: 0;
+    transform: translateX(34px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes liquidShift {
+  from {
+    transform: translate3d(-2%, -1%, 0) rotate(-6deg);
+  }
+
+  to {
+    transform: translate3d(2%, 1%, 0) rotate(-3deg);
+  }
+}
+
+@keyframes vaultFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(2deg);
+  }
+}
+
+@media (max-width: 1023px) {
+  .vault-stage {
+    inset: 160px 0 210px;
+    opacity: 0.48;
+  }
+
+  .vault-monolith {
+    width: min(44vw, 260px);
+  }
+}
+
+@media (max-width: 640px) {
+  .mono-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+
+  .vault-stage {
+    inset: 180px -40px auto 42%;
+    justify-content: flex-start;
+    min-height: 340px;
+  }
+
+  .vault-monolith {
+    width: 170px;
+  }
+
+  .text-outline {
+    -webkit-text-stroke-width: 1px;
+  }
+}
